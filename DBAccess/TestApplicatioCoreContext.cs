@@ -12,16 +12,11 @@ namespace TestAppCore.DBAccess
 
         public DbSet<UserProfile> UserProfiles { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Server = .; Database = MVCApplication; Trusted_Connection = True");
-        //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<UserProfile>().ToTable("UserProfile").HasKey(a => new { a.UserProfileID });
-            modelBuilder.Entity<Users>().ToTable("Users").HasKey(a => new { a.UserID });
+            modelBuilder.Entity<UserProfile>().ToTable("UserProfile");
+            modelBuilder.Entity<Users>().ToTable("Users");
 
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

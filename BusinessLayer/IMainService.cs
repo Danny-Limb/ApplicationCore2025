@@ -1,8 +1,8 @@
 ﻿using TestAppCore.DataLayerModels;
 
-namespace TestAppCore
+namespace TestAppCore.BusinessLayer
 {
-    public interface IMainRepositry
+    public interface IMainService
     {
         List<UserProfile> GetAllUsers();
     }

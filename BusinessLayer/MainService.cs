@@ -1,9 +1,9 @@
 ﻿using TestAppCore.DataLayerModels;
 using TestAppCore.DBAccess;
 
-namespace TestAppCore
+namespace TestAppCore.BusinessLayer
 {
-    public class MainServices : IMainRepositry
+    public class MainServices : IMainService
     {
         private readonly TestApplicatioCoreContext _dbcontext;
         public MainServices(TestApplicatioCoreContext dbContext)
