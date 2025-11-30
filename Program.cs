@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using TestAppCore.BusinessLayer;
 using TestAppCore.DBAccess;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TestApplicatioCoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<MainServices>();
 
 var app = builder.Build();
 

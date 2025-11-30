@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TestAppCore.BusinessLayer;
-using TestAppCore.DBAccess;
 using TestAppCore.Models;
 
 namespace TestAppCore.Controllers
@@ -9,21 +8,17 @@ namespace TestAppCore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMainService _mainService;
 
-        private TestApplicatioCoreContext _dbcontext;
-
-        private IMainService _main;
-
-        public HomeController(ILogger<HomeController> logger, TestApplicatioCoreContext dbContext)
+        public HomeController(ILogger<HomeController> logger, MainServices mainServices)
         {
             _logger = logger;
-             _dbcontext = dbContext;
+            _mainService = mainServices;
         }
 
         public IActionResult Index()
         {
-            _main = new MainServices(_dbcontext);
-            var test = _main.GetAllUsers();
+            var test = _mainService.GetAllUsers();
             return View(test);
         }
 

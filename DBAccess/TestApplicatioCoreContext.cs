@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using TestAppCore.DataLayerModels;
 
 namespace TestAppCore.DBAccess
@@ -10,15 +9,14 @@ namespace TestAppCore.DBAccess
         {
         }
 
+        public DbSet<Users> Userses { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<UserProfile>().ToTable("UserProfile");
-            modelBuilder.Entity<Users>().ToTable("Users");
-
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Entity<UserProfile>().ToTable("UserProfile").HasKey(a => new { a.UserProfileID });
+            modelBuilder.Entity<Users>().ToTable("Users").HasKey(a => new { a.UserID });
         }
     }
 }
